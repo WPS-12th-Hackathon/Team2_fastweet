@@ -7,7 +7,7 @@ from threads.models import Thread, ThreadLike
 def thread_list(request):
     threads = Thread.objects.all()
     context = {
-        'threads': threads
+        'threads': threads,
     }
     print(threads)
     return render(request, 'threads/thread-list.html', context)
