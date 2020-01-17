@@ -1,1 +1,30 @@
-i'm thread-list.html
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for th in threads %}
+
+<div class="post d-flex flex-row">
+    <div class="img-profile pr-2" style="width: 20%">
+        <a href="{% url 'members:profile' name=th.author %}"><img src="http://localhost:8000/media/user_profile_image/anna.jpeg" alt=""></a>
+    </div>
+    <div class="d-flex flex-row flex-wrap" style="width: 90%">
+        <div class="w-100 font-weight-bold">
+            {{ th.author }}
+        </div>
+        <div class="w-100">
+            {{ th.content }}
+        </div>
+        {% for img in th.image_set.all %}
+            <div>
+                <img src="{{ img.image.url }}" alt="">
+            </div>
+        {% endfor %}
+        <a href=" {% url 'threads:thread-like' pk=th.pk%}" class="w-25">
+            <i class="far fa-heart"></i> {{ th.like_users.count }}
+        </a>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

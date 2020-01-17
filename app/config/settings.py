@@ -32,6 +32,10 @@ ALLOWED_HOSTS = []
 # ROOT
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
+# STATIC
+STATIC_URL = '/static/'
+
+
 # Media Root
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 MEDIA_URL = '/media/'
@@ -39,6 +43,11 @@ MEDIA_URL = '/media/'
 # TEMPLATE
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
+# 정적파일 추가
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,6 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_extensions'
 ]
 
 MIDDLEWARE = [

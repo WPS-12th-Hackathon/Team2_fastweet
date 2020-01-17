@@ -11,9 +11,9 @@ class Thread(models.Model):
     tags = models.ManyToManyField(
         'Tag', verbose_name='해시태그 목록', related_name='threads', blank=True,
     )
-    like_users = models.ManyToManyField(User, through='PostLike', related_name='like_threads_set', )
+    like_users = models.ManyToManyField(User, through='ThreadLike', related_name='like_threads_set', )
     threads = models.ManyToManyField(
-        'self', related_name='ThreadOrigin', symmetrical=False, blank=True, null=True,
+        'self', related_name='ThreadOrigin', symmetrical=False, blank=True,
     )
 
 
@@ -22,7 +22,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=100)
 
 
-class PostLike(models.Model):
+class ThreadLike(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)

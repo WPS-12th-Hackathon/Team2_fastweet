@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Thread, Tag, PostLike, Image
+from .models import Thread, Tag, ThreadLike, Image
 
 class ImageInline(admin.TabularInline):
     model = Image
@@ -20,7 +20,7 @@ class TagAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(PostLike)
+@admin.register(ThreadLike)
 class PostLikeAdmin(admin.ModelAdmin):
     pass
 
