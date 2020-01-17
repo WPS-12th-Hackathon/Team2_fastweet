@@ -25,6 +25,9 @@ SECRET_KEY = 'o1%af7qkd^dsmtehu-i=zol9k1@9i_7+$2e5j(py5bt$@ltd7y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Abstract User
+AUTH_USER_MODEL = 'members.User'
+
 ALLOWED_HOSTS = []
 
 # ROOT
@@ -38,6 +41,7 @@ MEDIA_URL = '/media/'
 # Application definition
 
 INSTALLED_APPS = [
+    'members.apps.MembersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

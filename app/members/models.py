@@ -1,4 +1,6 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 
 # Create your models here.
 
@@ -8,3 +10,4 @@ class User(AbstractUser):
     """
     img_profile = models.ImageField('프로필이미지', blank=True, upload_to='user_profile_image/')
     name = models.CharField('이름', max_length=100)
+    # email = models.EmailField(max_length=254)
