@@ -20,7 +20,7 @@
                 <img src="{{ img.image.url }}" alt="">
             </div>
         {% endfor %}
-        <a href=" {% url 'threads:thread-like' pk=th.pk%}" class="w-25">
+        <a href=" {% url 'threads:thread-like' pk=th.pk%}" style="font-size: 2rem"class="w-25">
             <i class="far fa-heart"></i> {{ th.like_users.count }}
         </a>
     </div>

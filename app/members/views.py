@@ -29,19 +29,19 @@ def sign_up(request):
 
         print(username, password, email)
 
-        user, created = User.objects.get_or_create(
-            name=username,
-            username=username,
-            password=password,
-            email=email,
-        )
-
-        if not created:
+        if User.objects.filter(username=username).exists():
             error_msg = ValidationError('같은 아이디, 비밀번호 존재합니다.')
             context = {
                 'error': list(error_msg).pop(),
             }
             return render(request, 'members/sign_up.html', context)
+
+        user = User.objects.create_user(
+            name=username,
+            username=username,
+            password=password,
+            email=email,
+        )
 
         login(request, user)
         return redirect('threads:thread-list')
@@ -52,7 +52,6 @@ def sign_up(request):
 def log_out(request):
     logout(request)
     return redirect('members:sign-in')
-
 
     # def profile(request, name=None):
     #     curruent_user = request.user
@@ -70,7 +69,6 @@ def log_out(request):
 
 
 def profile(request, thread_name=None):
-
     if thread_name:
         print(thread_name, type(thread_name))
         current_user = request.user
@@ -87,5 +85,12 @@ def profile(request, thread_name=None):
             context['following'] = True
 
         return render(request, 'threads/profile.html', context)
-    return render(request, 'threads/profile.html')
 
+    context = {
+        'user_name': request.user.username,
+        'following_count': request.user.following.all().count(),
+        'follower_count': request.user.counterpart_relation_set.all().count(),
+    }
+
+    print(context['following_count'])
+    return render(request, 'threads/profile.html', context)

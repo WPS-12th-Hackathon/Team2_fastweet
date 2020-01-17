@@ -81,7 +81,7 @@ textarea:focus, input:focus{
 .nav-info-bar{
     position: fixed;
     background-color: #ffffff;
-    width: 600px;
+    width: 800px;
     height: 55px;
     padding: 5px 0;
     line-height: 50px;

@@ -7,19 +7,19 @@
     {% if same_user %}
     <button type="button" class="btn btn-primary rounded-pill h-50">Edit Profile</button>
     {% elif not same_user and following %}
-    <a href="{% url 'members:profile' thread_name=pk%}" class="btn btn-primary rounded-pill h-50">unfollow</a>
+    <a href="{% url 'members:profile' %}" class="btn btn-primary rounded-pill h-50">unfollow</a>
     {% else %}
      <button type="button" class="btn btn-outline-primary">Follow</button>
     {% endif %}
 </div>
 <div class="d-flex flex-wrap">
-    <p class="w-100">Donald J. Trump</p>
+    <p class="w-100">{{ user_name }}</p>
     <div class="w-25">
-        <span class="font-weight-bold">47</span>
+        <span class="font-weight-bold">{{ following_count }}</span>
         Following
     </div>
     <div class="w-25">
-        <span class="font-weight-bold">123</span>
+        <span class="font-weight-bold">{{ follower_count }}</span>
         Followers
     </div>
 </div>
