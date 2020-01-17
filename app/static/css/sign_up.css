@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+}
+
+html,body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: silver !important;
+    position: relative;
+}
+
+.signup-form{
+    width:30%;
+    height: 70%;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 20px 10px 10px 10px;
+
+    position:relative;
+    border-radius: 10px;
+}
+
+.icon-twitter-bird::before{
+    display: block;
+    margin: 0 auto;
+    color: #1da1f2;
+
+}
+.signup-form-item{
+    width:100%;
+    line-height: 2.5;
+    margin-top: 20px;
+    border-style : none;
+}
+
+.signup-form-button{
+    position:absolute;
+    top:2%;
+    right:2%;
+    border: 1px solid #1da1f2;
+    border-radius: 100px;
+    line-height:1.5;
+    padding: 0 15px;
+    font-size: 1rem;
+    background-color: #1da1f2;
+    color: white;
+}

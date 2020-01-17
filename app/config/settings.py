@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -25,18 +24,43 @@ SECRET_KEY = 'o1%af7qkd^dsmtehu-i=zol9k1@9i_7+$2e5j(py5bt$@ltd7y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Abstract User
+AUTH_USER_MODEL = 'members.User'
+
 ALLOWED_HOSTS = []
 
+# ROOT
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
+# STATIC
+STATIC_URL = '/static/'
+
+
+# Media Root
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+MEDIA_URL = '/media/'
+
+# TEMPLATE
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
+# 정적파일 추가
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 # Application definition
 
 INSTALLED_APPS = [
+    'members.apps.MembersConfig',
+    'threads.apps.ThreadsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +78,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATES_DIR
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,7 +95,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -79,7 +104,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -99,7 +123,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -112,7 +135,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
