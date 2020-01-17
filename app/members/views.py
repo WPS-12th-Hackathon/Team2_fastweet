@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model, login, authenticate
+from django.contrib.auth import get_user_model, login, authenticate, logout
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 
@@ -50,7 +50,9 @@ def sign_up(request):
 
 
 def log_out(request):
-    pass
+    logout(request)
+    return redirect('members:sign-in')
+
 
     # def profile(request, name=None):
     #     curruent_user = request.user
@@ -64,23 +66,26 @@ def log_out(request):
     #             context = {
     #                 'same_user': False
     #             }
-    #     curruent_user.filter(following__name=thread_author)
+    #     curruent_user.filter(following__namo=thread_author)
 
-    def profile(request, name=None):
-        curruent_user = request.user
-        thread_author = name
-        if name:
-            if curruent_user == thread_author:
-                context = {
-                    'same_user': True
-                }
-            else:
-                context = {
-                    'same_user': False
-                }
-        curruent_user.filter(following__name=thread_author)
 
-    context = {
-        'user': request.user,
-    }
-    return render(request, 'threads/profile.html', context)
+def profile(request, thread_name=None):
+
+    if thread_name:
+        print(thread_name, type(thread_name))
+        current_user = request.user
+        profile_user = User.objects.get(username=thread_name)
+        print('현유저는 : ', request.user)
+        print('프로필유저는 : ', profile_user)
+        print(request.user == profile_user)
+
+        context = dict()
+        if current_user == profile_user:
+            context['same_user'] = True
+
+        if current_user.following.filter(username=profile_user):
+            context['following'] = True
+
+        return render(request, 'threads/profile.html', context)
+    return render(request, 'threads/profile.html')
+
